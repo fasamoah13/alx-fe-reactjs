@@ -1,18 +1,4 @@
-import { Link } from "react-router-dom"; // Add this at the top
+import AddRecipeForm from "./AddRecipeForm";
 
-// Inside the recipes.map()
-<Link to={`/recipe/${recipe.id}`}>
-  <div
-    className="bg-white rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300"
-  >
-    <img
-      src={recipe.image}
-      alt={recipe.title}
-      className="w-full h-48 object-cover rounded-t-lg"
-    />
-    <div className="p-4">
-      <h2 className="text-xl font-semibold mb-2">{recipe.title}</h2>
-      <p className="text-gray-600">{recipe.summary}</p>
-    </div>
-  </div>
-</Link>
+// inside the return statement of HomePage
+<AddRecipeForm onAdd={handleAddRecipe} />
