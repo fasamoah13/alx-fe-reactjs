@@ -1,10 +1,8 @@
+import React from "react";
+import HomePage from "./components/HomePage";
+
 function App() {
-  return (
-    <div className="text-blue-500 text-3xl font-bold">
-      Hello Recipe Sharing Platform!
-    </div>
-  );
+  return <HomePage />;
 }
 
 export default App;
-
