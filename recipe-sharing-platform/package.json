@@ -4,7 +4,8 @@
   "private": true,
   "dependencies": {
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.17.0"   // <-- Add this line
   },
   "devDependencies": {
     "tailwindcss": "^3.0.0",
@@ -17,4 +18,3 @@
     "preview": "vite preview"
   }
 }
-
