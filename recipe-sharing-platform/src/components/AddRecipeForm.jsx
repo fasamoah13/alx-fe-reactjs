@@ -1,95 +1,30 @@
 import { useState } from "react";
+import AddRecipeForm from "./AddRecipeForm";
+import data from "../data.json"; // your existing recipes
 
-const AddRecipeForm = ({ onAdd }) => {
-  const [title, setTitle] = useState("");
-  const [ingredients, setIngredients] = useState("");
-  const [steps, setSteps] = useState("");
-  const [errors, setErrors] = useState({});
+const AddRecipePage = () => {
+  const [recipes, setRecipes] = useState(data);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Simple validation
-    const newErrors = {};
-    if (!title.trim()) newErrors.title = "Title is required";
-    if (!ingredients.trim() || ingredients.split(",").length < 2)
-      newErrors.ingredients = "Enter at least two ingredients separated by commas";
-    if (!steps.trim()) newErrors.steps = "Preparation steps are required";
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-
-    // Submit the recipe
-    onAdd({
-      id: Date.now(),
-      title,
-      ingredients: ingredients.split(","),
-      steps,
-    });
-
-    // Reset form
-    setTitle("");
-    setIngredients("");
-    setSteps("");
-    setErrors({});
+  const handleAddRecipe = (newRecipe) => {
+    setRecipes([newRecipe, ...recipes]); // add new recipe to the list
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="max-w-lg mx-auto bg-white p-6 rounded shadow-md"
-    >
-      <h2 className="text-2xl font-bold mb-4">Add a New Recipe</h2>
+    <div className="p-6">
+      {/* This is your form */}
+      <AddRecipeForm onAdd={handleAddRecipe} />
 
-      <div className="mb-4">
-        <label className="block font-medium mb-1">Title</label>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="w-full border border-gray-300 p-2 rounded"
-        />
-        {errors.title && (
-          <p className="text-red-500 text-sm mt-1">{errors.title}</p>
-        )}
+      {/* This shows the recipes below the form */}
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {recipes.map((recipe) => (
+          <div key={recipe.id} className="border p-4 rounded shadow">
+            <h3 className="text-lg font-bold">{recipe.title}</h3>
+            <p>{recipe.ingredients.join(", ")}</p>
+          </div>
+        ))}
       </div>
-
-      <div className="mb-4">
-        <label className="block font-medium mb-1">
-          Ingredients (comma separated)
-        </label>
-        <textarea
-          value={ingredients}
-          onChange={(e) => setIngredients(e.target.value)}
-          className="w-full border border-gray-300 p-2 rounded"
-        />
-        {errors.ingredients && (
-          <p className="text-red-500 text-sm mt-1">{errors.ingredients}</p>
-        )}
-      </div>
-
-      <div className="mb-4">
-        <label className="block font-medium mb-1">Preparation Steps</label>
-        <textarea
-          value={steps}
-          onChange={(e) => setSteps(e.target.value)}
-          className="w-full border border-gray-300 p-2 rounded"
-        />
-        {errors.steps && (
-          <p className="text-red-500 text-sm mt-1">{errors.steps}</p>
-        )}
-      </div>
-
-      <button
-        type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-      >
-        Add Recipe
-      </button>
-    </form>
+    </div>
   );
 };
 
-export default AddRecipeForm;
+export default AddRecipePage;
