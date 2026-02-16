@@ -1,51 +1,20 @@
 {
-<<<<<<< HEAD
   "name": "form-handling-react",
-=======
-  "name": "recipe-sharing-platform",
->>>>>>> 861edf50ec9e11ea51a8b44e1edbc7e05b4398b3
-  "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
     "formik": "^2.4.9",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "yup": "^1.7.1"
-=======
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.13.0"
->>>>>>> 861edf50ec9e11ea51a8b44e1edbc7e05b4398b3
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.1",
-<<<<<<< HEAD
-=======
-    "autoprefixer": "^10.4.24",
->>>>>>> 861edf50ec9e11ea51a8b44e1edbc7e05b4398b3
-    "eslint": "^9.39.1",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.4.24",
-    "globals": "^16.5.0",
-<<<<<<< HEAD
-=======
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.18",
->>>>>>> 861edf50ec9e11ea51a8b44e1edbc7e05b4398b3
-    "vite": "^8.0.0-beta.13"
-  },
-  "overrides": {
-    "vite": "^8.0.0-beta.13"
+    "@vitejs/plugin-react": "^4.1.0",
+    "vite": "^4.3.9"
   }
 }

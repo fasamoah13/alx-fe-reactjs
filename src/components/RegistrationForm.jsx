@@ -1,79 +1,68 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 
-function RegistrationForm() {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-
-  const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const validate = () => {
-    const newErrors = {};
-    if (!formData.username) newErrors.username = "Username is required";
-    if (!formData.email) newErrors.email = "Email is required";
-    if (!formData.password) newErrors.password = "Password is required";
-    return newErrors;
-  };
+const RegistrationForm = () => {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validate();
-    setErrors(validationErrors);
 
-    if (Object.keys(validationErrors).length === 0) {
-      console.log("Form submitted:", formData);
-      alert("Registration successful!");
-      // Here you can call your API, e.g., fetch or axios
+    // Basic validation
+    if (!username || !email || !password) {
+      alert('All fields are required!');
+      return;
     }
+
+    // Simulate API call
+    console.log('User Registered:', { username, email, password });
+
+    // Clear form
+    setUsername('');
+    setEmail('');
+    setPassword('');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Username:</label>
-        <input
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-        {errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
-      </div>
+    <div style={{ maxWidth: '400px', margin: '50px auto' }}>
+      <h2>User Registration (Controlled)</h2>
+      <form onSubmit={handleSubmit}>
+        <div style={{ marginBottom: '10px' }}>
+          <label>Username:</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            style={{ width: '100%', padding: '8px' }}
+          />
+        </div>
 
-      <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
-      </div>
+        <div style={{ marginBottom: '10px' }}>
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            style={{ width: '100%', padding: '8px' }}
+          />
+        </div>
 
-      <div>
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
-      </div>
+        <div style={{ marginBottom: '10px' }}>
+          <label>Password:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            style={{ width: '100%', padding: '8px' }}
+          />
+        </div>
 
-      <button type="submit">Register</button>
-    </form>
+        <button type="submit" style={{ padding: '10px 20px' }}>
+          Register
+        </button>
+      </form>
+    </div>
   );
-}
+};
 
 export default RegistrationForm;
